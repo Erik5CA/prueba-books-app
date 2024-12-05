@@ -1,8 +1,8 @@
-import useGetBooks from "../hooks/useGetBooks";
+import { useAppSelector } from "../hooks/books";
 import BookCard from "./BookCard";
 
 const BookContainer = () => {
-  const { books } = useGetBooks();
+  const books = useAppSelector((state) => state.book.library);
   return (
     <div className="books__container">
       {books.map(({ book }) => (
