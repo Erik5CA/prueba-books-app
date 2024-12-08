@@ -15,12 +15,16 @@ interface LibraryState {
   library: LibraryElement[];
   filter: FilterTypes;
   redingList: LibraryElement[];
+  redingListIDs: string[];
+  booksAvelable: number;
 }
 
 const initialState: LibraryState = {
   library,
   filter: FilterTypes.all,
   redingList: [],
+  redingListIDs: [],
+  booksAvelable: library.length,
 };
 
 const bookSlice = createSlice({
@@ -28,7 +32,7 @@ const bookSlice = createSlice({
   initialState,
   reducers: {
     setFilter: (state, filter) => {
-      console.log(filter);
+      state.filter = filter.payload;
       state.library =
         filter.payload === "Todos"
           ? initialState.library
@@ -39,7 +43,9 @@ const bookSlice = createSlice({
     },
     addToReadingList: (state, action: PayloadAction<Book>) => {
       state.redingList = [...state.redingList, { book: action.payload }];
-      toast.success(`"${action.payload.title}" added to Reading List`, {
+      state.redingListIDs = [...state.redingListIDs, action.payload.ISBN];
+      state.booksAvelable = state.booksAvelable - 1;
+      toast.success(`"${action.payload.title}" añadido a la lista de lectura`, {
         style: {
           background: "#480686",
           color: "#fff",
@@ -50,6 +56,16 @@ const bookSlice = createSlice({
       state.redingList = state.redingList.filter(
         ({ book }) => book.ISBN !== action.payload
       );
+      state.redingListIDs = state.redingListIDs.filter(
+        (id) => id !== action.payload
+      );
+      state.booksAvelable = state.booksAvelable + 1;
+      toast.success("Libro removido de la lista de lectura", {
+        style: {
+          background: "#480686",
+          color: "#fff",
+        },
+      });
     },
   },
 });
