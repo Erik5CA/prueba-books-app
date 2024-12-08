@@ -5,9 +5,31 @@
   width: 100%;
 }
 
+.books__header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.books__title {
+  font-weight: 400;
+}
+
+.books__number,
+.books__genre {
+  color: #9a36f7;
+}
+
+.books__number {
+  background-color: rgb(37, 38, 39);
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.75rem;
+}
+
 .books__container {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   /* grid-template-rows: repeat(4, auto); */
   gap: 2rem;
   /* padding: 1rem; */
@@ -18,51 +40,71 @@
   background-color: #080011;
   border-radius: 0.5rem;
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   overflow: hidden;
-  box-shadow: 2px 2px 8px rgb(83, 81, 78);
+  box-shadow: 0px 0px 5px rgb(31, 30, 28);
   /* justify-content: space-between; */
+  position: relative;
+  /* z-index: 1; */
+}
+
+.book-card__added {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #871ee9;
 }
 
 .book-card__image {
-  height: 65%;
+  /* height: 65%; */
   object-position: top;
+  width: 40%;
 }
 
 .book-card__wrapper {
   padding: 1rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  height: 100%;
+  justify-content: space-between;
+  /* align-items: center; */
+  /* gap: 1rem; */
+  width: 100%;
+}
+
+.book-card__info p {
+  font-size: 0.85rem;
+  color: rgb(177, 175, 173);
 }
 
 .book-card__title {
   font-size: 1rem;
   font-style: italic;
-  text-align: center;
+  /* text-align: center; */
 }
 
 .book-card__btn {
-  width: 80%;
+  /* width: 80%; */
   padding: 0.5rem 1rem;
   /* border: none; */
-  margin: 0 auto;
+  /* margin: 0 auto; */
   border-radius: 0.5rem;
   font-family: inherit;
   background-color: blueviolet;
-  font-weight: 700;
+  font-weight: 600;
+  font-size: 0.75rem;
   cursor: pointer;
   border: 1px solid transparent;
-  transition: background-color 200ms ease-in-out;
+  transition: all 200ms ease-in-out;
+}
+
+.book-card__btn--danger {
+  background-color: rgb(236, 54, 54);
 }
 
 .book-card__btn:hover {
-  background-color: rgb(93, 10, 170);
   color: rgb(224, 219, 219);
   border: 1px solid rgb(189, 126, 247);
+  opacity: 0.9;
 }
 
 .filters {
@@ -73,6 +115,7 @@
   position: sticky;
   top: 0;
   transition: all 0.3s ease-in-out;
+  z-index: 200;
 }
 
 .window-scroll {
@@ -137,6 +180,7 @@
   overflow-y: auto;
   gap: 0.75rem;
   box-shadow: 1px 2px 10px black;
+  z-index: 100;
 }
 .filters__reading-list:hover .reading-list {
   /* display: block; */
@@ -148,9 +192,11 @@
 
 .reading-list__book {
   display: flex;
-  gap: 0.5rem;
+  /* gap: 0.5rem; */
   /* margin-top: 0.75rem; */
   border-radius: 0.5rem;
+  /* height: 120px; */
+  width: 100%;
 }
 
 .reading-list__book:hover {
@@ -158,13 +204,15 @@
 }
 
 .reading-list__image {
-  width: 60px;
+  width: 35%;
+  /* height: 100%; */
 }
 
 .reading-list__info {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  padding: 0.5rem;
 }
 
 .reading-list__title {
@@ -180,4 +228,6 @@
   background-color: rgb(236, 54, 54);
   font-size: 0.875rem;
   cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: 500;
 }
