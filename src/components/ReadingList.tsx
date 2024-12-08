@@ -8,7 +8,7 @@ const ReadingList = () => {
   return (
     <div className="filters__reading-list">
       <div className="filters__reading-list-disp">
-        <p>Reading List</p>
+        <p>Lista de lectura</p>
         <div className="reading-list__baget">{readingList.length}</div>
       </div>
       <aside className="reading-list">
