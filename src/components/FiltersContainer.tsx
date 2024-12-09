@@ -1,11 +1,12 @@
 import { useEffect, useRef } from "react";
-import { useAppDispatch } from "../hooks/books";
+import { useAppDispatch, useAppSelector } from "../hooks/books";
 import { FilterTypes, setFilter } from "../slices/bookSlice";
 import ReadingList from "./ReadingList";
 
 const FiltersContainer = () => {
   const dispatch = useAppDispatch();
   const divRef = useRef<HTMLDivElement>(null);
+  const { filter } = useAppSelector((state) => state.book);
 
   useEffect(() => {
     const onScroll = () => {
@@ -23,6 +24,7 @@ const FiltersContainer = () => {
           onChange={(e) => dispatch(setFilter(e.target.value))}
           name="genre"
           id="genre"
+          defaultValue={filter}
         >
           {Object.entries(FilterTypes).map(([key, literal]) => (
             <option className="filter__option" key={key} value={literal}>

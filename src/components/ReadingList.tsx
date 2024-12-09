@@ -2,7 +2,7 @@ import { useAppDispatch, useAppSelector } from "../hooks/books";
 import { removeFromReadingList } from "../slices/bookSlice";
 
 const ReadingList = () => {
-  const readingList = useAppSelector((state) => state.book.redingList);
+  const readingList = useAppSelector((state) => state.book.readingList);
   const dispatch = useAppDispatch();
 
   return (

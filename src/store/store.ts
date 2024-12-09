@@ -1,10 +1,22 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import bookReducer from "../slices/bookSlice";
+import { persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
+
+const persistConfing = {
+  key: "root",
+  storage,
+  whitelist: ["book"],
+};
+
+const rootReducer = combineReducers({
+  book: bookReducer,
+});
+
+const persistedReducer = persistReducer(persistConfing, rootReducer);
 
 export const store = configureStore({
-  reducer: {
-    book: bookReducer,
-  },
+  reducer: persistedReducer,
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

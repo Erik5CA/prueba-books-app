@@ -4,7 +4,7 @@ import { Book } from "../types";
 import { BookCheck } from "lucide-react";
 
 const BookCard = ({ book }: { book: Book }) => {
-  const booksAdded = useAppSelector((state) => state.book.redingListIDs);
+  const booksAdded = useAppSelector((state) => state.book.readingListIDs);
   const dispatch = useAppDispatch();
   const isAdded = booksAdded.includes(book.ISBN);
   return (

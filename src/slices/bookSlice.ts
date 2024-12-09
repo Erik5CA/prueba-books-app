@@ -11,20 +11,20 @@ export enum FilterTypes {
   "terror" = "Terror",
 }
 
-interface LibraryState {
+export interface LibraryState {
   library: LibraryElement[];
   filter: FilterTypes;
-  redingList: LibraryElement[];
-  redingListIDs: string[];
-  booksAvelable: number;
+  readingList: LibraryElement[];
+  readingListIDs: string[];
+  booksAvailable: number;
 }
 
 const initialState: LibraryState = {
   library,
   filter: FilterTypes.all,
-  redingList: [],
-  redingListIDs: [],
-  booksAvelable: library.length,
+  readingList: [],
+  readingListIDs: [],
+  booksAvailable: library.length,
 };
 
 const bookSlice = createSlice({
@@ -35,16 +35,16 @@ const bookSlice = createSlice({
       state.filter = filter.payload;
       state.library =
         filter.payload === "Todos"
-          ? initialState.library
+          ? [...initialState.library]
           : initialState.library.filter(
               ({ book }) =>
                 book.genre.toLowerCase() === filter.payload.toLowerCase()
             );
     },
     addToReadingList: (state, action: PayloadAction<Book>) => {
-      state.redingList = [...state.redingList, { book: action.payload }];
-      state.redingListIDs = [...state.redingListIDs, action.payload.ISBN];
-      state.booksAvelable = state.booksAvelable - 1;
+      state.readingList = [...state.readingList, { book: action.payload }];
+      state.readingListIDs = [...state.readingListIDs, action.payload.ISBN];
+      state.booksAvailable = state.booksAvailable - 1;
       toast.success(`"${action.payload.title}" añadido a la lista de lectura`, {
         style: {
           background: "#480686",
@@ -53,13 +53,13 @@ const bookSlice = createSlice({
       });
     },
     removeFromReadingList: (state, action: PayloadAction<string>) => {
-      state.redingList = state.redingList.filter(
+      state.readingList = state.readingList.filter(
         ({ book }) => book.ISBN !== action.payload
       );
-      state.redingListIDs = state.redingListIDs.filter(
+      state.readingListIDs = state.readingListIDs.filter(
         (id) => id !== action.payload
       );
-      state.booksAvelable = state.booksAvelable + 1;
+      state.booksAvailable = state.booksAvailable + 1;
       toast.success("Libro removido de la lista de lectura", {
         style: {
           background: "#480686",

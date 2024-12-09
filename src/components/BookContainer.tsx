@@ -5,13 +5,13 @@ const BookContainer = () => {
   const {
     library: books,
     filter,
-    booksAvelable,
+    booksAvailable,
   } = useAppSelector((state) => state.book);
   return (
     <div className="books">
       <div className="books__header">
         <h3 className="books__title">
-          <span className="books__number">{booksAvelable}</span> disponibles
+          <span className="books__number">{booksAvailable}</span> disponibles
         </h3>
         {filter !== "Todos" && (
           <h3 className="books__title">
