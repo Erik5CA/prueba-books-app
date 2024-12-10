@@ -29,7 +29,7 @@
 
 .books__container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   /* grid-template-rows: repeat(4, auto); */
   gap: 2rem;
   /* padding: 1rem; */
@@ -230,4 +230,16 @@
   cursor: pointer;
   font-size: 0.75rem;
   font-weight: 500;
+}
+
+@media (width >= 37.5rem) {
+  .books__container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width >= 64rem) {
+  .books__container {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
